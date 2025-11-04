@@ -31,11 +31,7 @@ jobs:
         pip install dailycheckin==24.1.7
     - name: Generate config.json
       run: |
-        jq -n --arg cookie "${{ secrets.V2EX_COOKIE }}" '
-          {
-            V2EX: [{cookie: $cookie}]
-          }
-        ' > config.json
+        jq -n --arg cookie "${{ secrets.V2EX_COOKIE }}" '{"V2EX":[{"cookie":$cookie}]}' > config.json
     - name: Run dailycheckin
       run: dailycheckin
 
